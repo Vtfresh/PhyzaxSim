@@ -10,6 +10,13 @@ GLOBAL VALUES
 dartBoardTarget = 0
 dartBoardRadius = 10
 popSize = 3
+turnOver = 0.1 # Fraction of population that is replace each generation
+
+"""
+CALCULATED GLOBALS
+"""
+turnOverNum = int(popSize*turnOver)
+
 
 """ 
 DEFINE CLASSES 
@@ -81,5 +88,8 @@ SCRIPT BODY
 """
 
 myPop =  population(popSize)
-for indiv in myPop.individuals
+for indiv in myPop.individuals:
     indiv.evalSuccess()
+for i in range(turnOverNum):
+    indiv1, indiv2 = random.choices(myPop.individuals, k=2)
+    print(indiv1, indiv2)
